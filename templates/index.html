@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Blog Comment Sentiment Analyzer</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="container">
+    <h1>📝 Blog Post</h1>
+    <p>This is a sample blog post. Leave your comments below and see how positive or negative they are!</p>
+
+    <form method="POST">
+      <textarea name="comment" placeholder="Write your comment here..." required></textarea>
+      <button type="submit">Submit</button>
+    </form>
+
+    <h2>🗨️ Comments:</h2>
+    {% for comment in comments %}
+      <div class="comment {{ comment.sentiment|lower }}">
+        <p>{{ comment.text }}</p>
+        <strong>Sentiment: {{ comment.sentiment }}</strong>
+      </div>
+    {% endfor %}
+  </div>
+</body>
+</html>
